@@ -1,5 +1,5 @@
-name: "Godot Export Example"
-on: [push, workflow_dispatch]
+name: "Godot Export Complete"
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
