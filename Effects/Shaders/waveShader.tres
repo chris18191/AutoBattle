@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float int_red = .3;
+uniform float int_green = .3;
+uniform float int_blue = .3;
+const vec3 col_red = vec3(.8,.1,.1);
+const vec3 col_green = vec3(.1,.8,.1);
+const vec3 col_blue = vec3(.1,.8,.1);
+
+void fragment(){
+	
+	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
+	
+	vec3 color = abs(sin(FRAGCOORD.x/resolution.x+TIME*.4)) * int_red * col_red;
+	color += abs(cos(FRAGCOORD.y/resolution.y+TIME*.45)) * int_blue * col_blue;
+	color += abs(sin((FRAGCOORD.y/resolution.y+FRAGCOORD.x/resolution.x)/2. + TIME*.47)) * int_green * col_green;
+	vec4 final = vec4(color,.1) + texture(TEXTURE, UV)*.9;
+	COLOR = final;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/int_red = 0.6
+shader_param/int_green = 0.2
+shader_param/int_blue = 0.2

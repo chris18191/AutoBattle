@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Units/Dummy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Units/RangedDummy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Units/Behaviour/Follow.tscn" type="PackedScene" id=3]
+
+[node name="SmallArena" type="Node2D"]
+
+[node name="Dummy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 306.886, 212.664 )
+maxHealth = 500
+viewDistance = 464.225
+attackRadius = 65.722
+
+[node name="Follow" parent="Dummy" instance=ExtResource( 3 )]
+
+[node name="RangedDummy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 714.917, 260.772 )
+faction = 1
+
+[node name="RangedDummy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 606.228, 442.516 )
+faction = 1

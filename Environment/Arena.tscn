@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Units/Dummy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Units/Behaviour/Follow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Units/RangedDummy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/CameraUpdatingZoom.tscn" type="PackedScene" id=4]
+
+[node name="TestArena" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -902.215
+margin_top = -536.188
+margin_right = 2025.79
+margin_bottom = 1154.81
+mouse_filter = 2
+color = Color( 0.188235, 0.152941, 0.298039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dummy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 371.725, 260.06 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy" instance=ExtResource( 2 )]
+
+[node name="Dummy2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 418.786, 46.0061 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy2" instance=ExtResource( 2 )]
+
+[node name="Dummy3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 534.698, 595.332 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy3" instance=ExtResource( 2 )]
+
+[node name="Dummy4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 728.914, 684.422 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy4" instance=ExtResource( 2 )]
+
+[node name="Dummy5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 689.715, 524.06 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy5" instance=ExtResource( 2 )]
+
+[node name="Dummy6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 625.57, 392.207 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy6" instance=ExtResource( 2 )]
+
+[node name="Dummy7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 497.281, 158.791 )
+viewDistance = 500.0
+attackRadius = 70.0
+
+[node name="Follow" parent="Dummy7" instance=ExtResource( 2 )]
+
+[node name="RangedDummy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 875.636, 191.068 )
+faction = 1
+viewDistance = 500.0
+attackRadius = 500.0
+
+[node name="RangedDummy4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1178.54, 397.756 )
+faction = 1
+viewDistance = 500.0
+attackRadius = 500.0
+
+[node name="RangedDummy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1385.23, 485.065 )
+faction = 1
+viewDistance = 500.0
+attackRadius = 500.0
+
+[node name="RangedDummy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1296.67, 243.88 )
+faction = 1
+viewDistance = 500.0
+attackRadius = 500.0
+
+[node name="RangedDummy3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1079.88, 88.545 )
+faction = 1
+viewDistance = 500.0
+attackRadius = 500.0
+
+[node name="CameraUpdatingZoom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 615.833, 415.642 )
+current = true
+zoom = Vector2( 2, 2 )
