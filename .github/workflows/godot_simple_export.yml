@@ -66,29 +66,7 @@ jobs:
           name: web
           path: ./build/web/
           
-  export-android_debug1:
-    name: Android Debug Export
-    runs-on: ubuntu-latest
-    container:
-      #image: myood/godot-ci-android-export:godot-3.2.3
-      image: docker://barichello/godot-ci:3.2.3
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Android Debug Build
-        run: |
-          pwd
-          ls -la
-          godot -v --debug --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: Android Debug APK
-          path: ./build/android/${EXPORT_NAME}_debug.apk
+
   
   export-android_debug2:
     name: Android Debug Export (myoo)
