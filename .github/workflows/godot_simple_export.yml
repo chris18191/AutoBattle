@@ -83,7 +83,7 @@ jobs:
         run: |
           pwd
           ls -la
-          godot -v --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
+          godot -v --debug --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
