@@ -2,7 +2,7 @@ name: "godot-ci export"
 on: workflow_dispatch
 
 env:
-  GODOT_VERSION: 3.2.1
+  GODOT_VERSION: 3.2.3
   EXPORT_NAME: AutoBattle
 
 jobs:
