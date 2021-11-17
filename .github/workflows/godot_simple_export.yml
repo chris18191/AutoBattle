@@ -88,10 +88,9 @@ jobs:
           chmod +x android/build/gradlew
       - name: Check Editor Settings
         run: |
-          ls -la ~/
-          ls -l ~/.config/
-          ls -l ~/.config/godot
-          cat ~/.config/godot/editor_settings-3.tres
+          ls -la
+          ls -l /root/.config/
+          ls -l /root/.config/godot
       - name: Android Debug Build
         run: |
           pwd
