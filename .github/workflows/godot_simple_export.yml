@@ -78,10 +78,10 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup
         run: |
-          grep -F "export/android/jarsigner =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/debug_keystore =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/adb =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/custom_build_sdk_path =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/jarsigner =" /root/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/debug_keystore =" /root/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/adb =" /root/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/custom_build_sdk_path =" /root/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
           # Create directory for artifacts
           mkdir -v -p export/android
           # Prevent android build gradlew from failing due to not executable
