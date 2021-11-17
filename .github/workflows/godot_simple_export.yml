@@ -104,16 +104,9 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Android Debug Build
         run: |
-          # Quick check if basic settings are properly set
-          grep -F "export/android/jarsigner =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/debug_keystore =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/adb =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          grep -F "export/android/custom_build_sdk_path =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
-          # Create directory for artifacts
-          mkdir -v -p export/android
           # Prevent android build gradlew from failing due to not executable
           chmod +x android/build/gradlew
-          godot --quiet --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk >&-
+          godot --verbose --debug --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk >&-
           ls export/android/${EXPORT_NAME}-debug.apk # ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
