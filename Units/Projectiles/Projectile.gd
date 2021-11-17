@@ -31,6 +31,5 @@ func _on_Projectile_collision(body:Targetable):
 		return
 	if (body.faction != faction):
 		body.receiveDamage(damage)
-		print_debug("BOOM")
 		queue_free()
 	

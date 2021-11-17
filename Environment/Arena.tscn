@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Units/Dummy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Units/Behaviour/Follow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Units/RangedDummy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/CameraUpdatingZoom.tscn" type="PackedScene" id=4]
 
-[node name="TestArena" type="Node2D"]
+[node name="Arena" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
 margin_left = -902.215
 margin_top = -536.188
 margin_right = 2025.79
@@ -96,8 +97,3 @@ position = Vector2( 1079.88, 88.545 )
 faction = 1
 viewDistance = 500.0
 attackRadius = 500.0
-
-[node name="CameraUpdatingZoom" parent="." instance=ExtResource( 4 )]
-position = Vector2( 615.833, 415.642 )
-current = true
-zoom = Vector2( 2, 2 )

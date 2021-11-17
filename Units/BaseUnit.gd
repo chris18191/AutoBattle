@@ -49,7 +49,7 @@ func _ready():
 func _on_View_body_entered(body):
 	if currentTarget == body:
 		return
-	print("seeing body:" + str(body) + " with faction="+str(body.faction))
+	#print("seeing body:" + str(body) + " with faction="+str(body.faction))
 	if body.faction == faction:
 		return
 	if isEnemy(body):
@@ -69,20 +69,17 @@ func _on_AttackRadius_body_entered(body):
 			startAttacking()
 
 func isEnemy(x):
-	return x != null and faction != x.faction and x is Targetable
+	return x != null and faction != x.faction and x.faction != -1 and x is Targetable
 
 func startAttacking():
 	currentlyAttacking = true
 	
 	_attackTimer.wait_time = 1.0/attackSpeed
 	_attackTimer.start()
-	
-	print("attacking: " + str(currentTarget))
 
 func stopAttacking():
 	currentlyAttacking = false
 	_attackTimer.stop()
-	print("stopped attacking: " + str(currentTarget))
 
 func receiveDamage(dmg:float):
 	currentHealth -= dmg
@@ -92,7 +89,6 @@ func receiveDamage(dmg:float):
 		die()
 
 func die():
-	print_debug("I am dead")
 	queue_free()
 
 func _on_AttackRadius_body_exited2(body):
@@ -114,20 +110,19 @@ func _on_AttackRadius_body_exited(body):
 		return
 		
 	currentTarget = attackableTargets.pop_front()
-	while not isEnemy(currentTarget):
+	while not isEnemy(currentTarget) and not possibleTargets.empty():
 		currentTarget = possibleTargets.pop_front()
 	if currentTarget == null:
 		stopAttacking()
 
 
 func _on_View_body_exited(body):
-	print("body exited view")
 	if body == currentTarget:
 		if len(possibleTargets) > 0:
 			currentTarget = possibleTargets.pop_front()
 			while not isEnemy(currentTarget) and len(possibleTargets) > 0:
 				currentTarget = possibleTargets.pop_front()
-			if not $AttackRadius.overlaps_body(currentTarget):
+			if currentTarget == null or not $AttackRadius.overlaps_body(currentTarget):
 				stopAttacking()
 		else:
 			currentTarget = null
