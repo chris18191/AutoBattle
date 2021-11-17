@@ -113,13 +113,13 @@ jobs:
           mkdir -v -p export/android
           # Prevent android build gradlew from failing due to not executable
           chmod +x android/build/gradlew
-          godot --quiet --export-debug "Android" export/android/${APP_NAME}-debug.apk >&-
-          ls export/android/${APP_NAME}-debug.apk # ls
+          godot --quiet --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk >&-
+          ls export/android/${EXPORT_NAME}-debug.apk # ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: Android Debug APK
-          path: ./build/android/${EXPORT_NAME}_debug.apk
+          path: export/android/${EXPORT_NAME}-debug.apk
         
   export-mac:
     name: Mac Export
