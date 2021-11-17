@@ -87,7 +87,11 @@ jobs:
           # Prevent android build gradlew from failing due to not executable
           chmod +x android/build/gradlew
       - name: Check Editor Settings
-        run: cat ~/.config/godot/editor_settings-3.tres
+        run: |
+          ls -la ~/
+          ls -l ~/.config/
+          ls -l ~/.config/godot
+          cat ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           pwd
