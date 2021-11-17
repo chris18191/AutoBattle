@@ -10,7 +10,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.2.1
+      image: docker://barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -30,7 +30,7 @@ jobs:
     name: Linux Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.2.1
+      image: docker://barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -50,7 +50,7 @@ jobs:
     name: Web Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.2.1
+      image: docker://barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -70,7 +70,7 @@ jobs:
     name: Android Debug Export
     runs-on: ubuntu-latest
     container:
-      image: myood/godot-ci-android-export:godot-3.2.1
+      image: myood/godot-ci-android-export:godot-3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -90,7 +90,7 @@ jobs:
     name: Mac Export
     runs-on: ubuntu-latest
     container:
-      image: docker://barichello/godot-ci:3.2.1
+      image: docker://barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
