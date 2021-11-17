@@ -4,7 +4,7 @@ on: [workflow_dispatch]
 env:
   GODOT_VERSION: 3.3.2
   PROJECT_NAME: AutoBattle
-  PROJECT_PATH: .
+  PROJECT_PATH: ""
   EXPORT_MODE: debug # If not defined, defaults to debug
   # Required if in release mode
   # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
