@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       #image: myood/godot-ci-android-export:godot-3.2.3
-      image: docker://barichello/godot-ci:3.4
+      image: docker://barichello/godot-ci:3.3.4
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -80,7 +80,10 @@ jobs:
           mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Android Debug Build
-        run: godot -v --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
+        run: |
+          pwd
+          ls -la
+          godot -v --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
