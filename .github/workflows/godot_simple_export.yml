@@ -86,6 +86,7 @@ jobs:
         run: |
           pwd
           ls
+          cat ~/.config/godot/editor_settings-3.tres
           godot -v --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
       - name: Setup
         run: ls export/android/${EXPORT_NAME}-debug.apk # ls
