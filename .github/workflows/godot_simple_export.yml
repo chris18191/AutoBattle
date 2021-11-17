@@ -66,7 +66,7 @@ jobs:
           name: web
           path: ./build/web/
           
-  export-android_debug:
+  export-android_debug1:
     name: Android Debug Export
     runs-on: ubuntu-latest
     container:
@@ -83,7 +83,38 @@ jobs:
         run: |
           pwd
           ls -la
-          godot -v --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
+          godot -v --debug --export-debug "android" ./build/android/${EXPORT_NAME}_debug.apk
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: Android Debug APK
+          path: ./build/android/${EXPORT_NAME}_debug.apk
+  
+  export-android_debug2:
+    name: Android Debug Export (myoo)
+    runs-on: ubuntu-latest
+    container:
+      image: myood/godot-ci-android-export:godot-3.2.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Android Debug Build
+        run: |
+          # Quick check if basic settings are properly set
+          grep -F "export/android/jarsigner =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/debug_keystore =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/adb =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/custom_build_sdk_path =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          # Create directory for artifacts
+          mkdir -v -p export/android
+          # Prevent android build gradlew from failing due to not executable
+          chmod +x android/build/gradlew
+          godot --quiet --export-debug "Android" export/android/${APP_NAME}-debug.apk >&-
+          ls export/android/${APP_NAME}-debug.apk # ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
