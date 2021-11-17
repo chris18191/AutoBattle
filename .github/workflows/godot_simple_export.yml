@@ -70,7 +70,8 @@ jobs:
     name: Android Debug Export
     runs-on: ubuntu-latest
     container:
-      image: myood/godot-ci-android-export:godot-3.2.3
+      #image: myood/godot-ci-android-export:godot-3.2.3
+      image: docker://barichello/godot-ci:3.2.3
     steps:
       - name: Checkout
         uses: actions/checkout@v1
