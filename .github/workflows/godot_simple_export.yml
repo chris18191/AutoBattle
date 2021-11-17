@@ -70,7 +70,7 @@ jobs:
     name: Android Debug Export
     runs-on: ubuntu-latest
     container:
-      image: bakz151/godot-ci-android-bakz:latest
+      image: myood/godot-ci-android-export:godot-3.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -99,7 +99,7 @@ jobs:
           mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Mac Build
-        run: godot -v --export "mac" ./build/mac/$EXPORT_NAME.zip
+        run: godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
