@@ -92,11 +92,7 @@ jobs:
           ls -l /root/.config/
           ls -l /root/.config/godot
       - name: Android Debug Build
-        run: |
-          pwd
-          ls
-          cat ~/.config/godot/editor_settings-3.tres
-          godot -v --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
+        run: godot -v --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
