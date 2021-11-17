@@ -68,8 +68,8 @@ jobs:
           
 
   
-  export-android_debug2:
-    name: Android Debug Export (myoo)
+  export-android_debug:
+    name: Android Debug Export (myood)
     runs-on: ubuntu-latest
     container:
       image: myood/godot-ci-android-export:godot-3.2.3
@@ -78,11 +78,10 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup
         run: chmod +x android/build/gradlew
-      - name: Android Debug Build Check
-        run: |
-          godot --check-only --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
       - name: Android Debug Build
         run: |
+          pwd
+          ls
           godot -v --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
       - name: Setup
         run: ls export/android/${EXPORT_NAME}-debug.apk # ls
