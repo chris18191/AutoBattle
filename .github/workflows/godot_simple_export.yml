@@ -79,6 +79,7 @@ jobs:
       - name: Setup
         run: |
           if [[ -e /root/.config ]]; then mv /root/.config ~; fi
+          if [[ -e /root/.local ]]; then mv /root/.local ~; fi
           grep -F "export/android/jarsigner =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
           grep -F "export/android/debug_keystore =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
           grep -F "export/android/adb =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
