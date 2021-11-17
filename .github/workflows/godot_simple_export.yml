@@ -77,15 +77,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
-        run: |
-          mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+        run: chmod +x android/build/gradlew
       - name: Android Debug Build
         run: |
-          # Prevent android build gradlew from failing due to not executable
-          chmod +x android/build/gradlew
-          godot --verbose --debug --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk >&-
-          ls export/android/${EXPORT_NAME}-debug.apk # ls
+          godot --verbose --debug --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk >&- 
+      - name: Setup
+        run: ls export/android/${EXPORT_NAME}-debug.apk # ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
