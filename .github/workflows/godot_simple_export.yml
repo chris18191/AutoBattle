@@ -78,6 +78,10 @@ jobs:
         uses: actions/checkout@v1
       - name: Setup
         run: chmod +x android/build/gradlew
+      - name: Setup
+        run: |
+          mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Android Debug Build
         run: |
           pwd
