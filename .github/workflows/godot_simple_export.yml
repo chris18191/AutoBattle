@@ -77,19 +77,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
-        run: chmod +x android/build/gradlew
-      - name: Setup
         run: |
-          mkdir -v -p build/linux build/windows build/mac build/web build/android ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          grep -F "export/android/jarsigner =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/debug_keystore =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/adb =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          grep -F "export/android/custom_build_sdk_path =" ~/.config/godot/editor_settings-3.tres | grep '".*"' -o | xargs ls
+          # Create directory for artifacts
+          mkdir -v -p export/android
+          # Prevent android build gradlew from failing due to not executable
+          chmod +x android/build/gradlew
+      - name: Check Editor Settings
+        run: cat ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           pwd
           ls
           cat ~/.config/godot/editor_settings-3.tres
           godot -v --export-debug "android_docker" export/android/${EXPORT_NAME}-debug.apk
-      - name: Setup
-        run: ls export/android/${EXPORT_NAME}-debug.apk # ls
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
